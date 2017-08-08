@@ -53,8 +53,8 @@ $(document).ready(function(){
             <li><a href="10.123.0.21:8089/index.html" title="">质量保障部</a></li>           
             </ul>
         </li>
-        <li><a href="ftp://10.123.0.17/">一周会议安排</a></li>
-        <li><a href="">文件下载</a></li>
+            <li><a href="<%=request.getContextPath()%>/meetings">一周会议安排</a></li>
+            <li><a href="ftp://10.123.0.17/">文件下载</a></li>
         <li><a href="<%=request.getContextPath()%>/about">关于我们</a></li>
         </ul>
     </div>

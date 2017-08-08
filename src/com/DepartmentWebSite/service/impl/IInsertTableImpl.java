@@ -57,15 +57,37 @@ public class IInsertTableImpl implements IInsertTalbe {
 	}
 
 	@Override
-	public boolean InsertTable(photoModel photo) {
+	public boolean InsertTable(photoModel photo) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		String sql="insert into photo (newsID,photoName) "
+				+"values ('"+photo.getNewsID()+"', '"+photo.getPhotoName()+"');";
+		
+		boolean re=false;
+		
+		this.imysql.connSQL();
+		
+		re=this.imysql.insertSQL(sql);
+		
+		this.imysql.deconnSQL();		
+		
+		return re;
 	}
 
 	@Override
-	public boolean InsertTalbe(accessoryModel accessory) {
+	public boolean InsertTalbe(accessoryModel accessory) throws SQLException{
 		// TODO Auto-generated method stub
-		return false;
+		String sql="insert into accessory (newsID,fileName) "
+				+"values ('"+accessory.getNewsID()+"', '"+accessory.getAccessoryName()+"');";
+		
+		boolean re=false;
+		
+		this.imysql.connSQL();
+		
+		re=this.imysql.insertSQL(sql);
+		
+		this.imysql.deconnSQL();		
+		
+		return re;
 	}
 
 }

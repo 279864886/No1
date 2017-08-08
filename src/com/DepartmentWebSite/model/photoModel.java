@@ -2,16 +2,17 @@ package com.DepartmentWebSite.model;
 
 public class photoModel {
 
-	private String photoID;
+	private String newsID;
 	
 	private String photoName;	
 
-	public String getPhotoID() {
-		return photoID;
+	
+	public String getNewsID() {
+		return newsID;
 	}
 
-	public void setPhotoID(String photoID) {
-		this.photoID = photoID;
+	public void setNewsID(String newsID) {
+		this.newsID = newsID;
 	}
 
 	public String getPhotoName() {

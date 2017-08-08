@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Objects;
+import java.util.Random;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.DepartmentWebSite.model.UploadFile;
+import com.DepartmentWebSite.model.JsonResponse;
+import com.DepartmentWebSite.model.accessoryModel;
 import com.DepartmentWebSite.model.adminModel;
 import com.DepartmentWebSite.model.newsModel;
 import com.DepartmentWebSite.model.photoModel;
@@ -36,166 +39,179 @@ import com.DepartmentWebSite.service.impl.IInsertTableImpl;
 @Controller
 @RequestMapping("/upload")
 public class uploadController {
-	
-	IUploadNews iuploadnews;
-	IInsertTalbe iinserttable;
-	
-	newsModel news=new newsModel();
-	
-	adminModel admin=new adminModel();
-	
-	photoModel photo;
-	
-	public uploadController() {
-		this.iuploadnews=new IUploadNewsImpl();
-		this.iinserttable=new IInsertTableImpl();
-	}
-		
+
+    IUploadNews iuploadnews;
+    IInsertTalbe iinserttable;
+
+    newsModel news = new newsModel();
+
+    adminModel admin = new adminModel();
+
+    photoModel photo;
+    accessoryModel accessory;
+
+    public uploadController() {
+        this.iuploadnews = new IUploadNewsImpl();
+        this.iinserttable = new IInsertTableImpl();
+    }
+
     @RequestMapping()
-	public String upload(Model model) {
-    	
-    	Date now = new Date();
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss"); 
-    	
-    	String newsID = dateFormat.format(now);
-    	
-    	if(!model.containsAttribute("news"))
-    	{
-    		news.setNewsID(newsID);
-    		model.addAttribute("news", news);
-    	}
-    	else
-    	{
-    		//news.setNewsID("654321");
-    		//model.addAttribute("ididid", news);
-    	}
-    	
-    	
-    	return "upload";
-    
-    	
-    	
-    	
+    public String upload(Model model) {
+
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+
+        String newsID = dateFormat.format(now);
+
+        if (!model.containsAttribute("news")) {
+            news.setNewsID(newsID);
+            model.addAttribute("news", news);
+        } else {
+            //news.setNewsID("654321");
+            //model.addAttribute("ididid", news);
+        }
+
+
+        return "upload";
+
+
     }
-    
-    private HttpServletRequest request; 
-    
-    private boolean saveFile(MultipartFile file) {  
-        // 判断文件是否为空  
-        
-    	request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    	
-    	if (!file.isEmpty()) {  
-            try {  
-            	String file_name= file.getOriginalFilename();
-            	String file_rename=news.getNewsID().toString() + "_" + file_name;
-            	
-                // 文件保存路径  
-                String filePath = request.getSession().getServletContext().getRealPath("/") + "resources\\upload\\"  
-                        +   file_rename;
-                
-                String suffix= file_name.substring(file_name.lastIndexOf(".")+1).toLowerCase();
-                
-                if(suffix=="bmp"||suffix=="jpeg"||suffix=="jpg"||suffix=="png")
-                {
-                	//图片文件
+    private HttpServletRequest request;
+
+    private boolean saveFile(MultipartFile file) {
+
+
+        request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+        if (!file.isEmpty()) {
+            try {
+                String file_name = file.getOriginalFilename();
+                String file_rename = news.getNewsID() + "_" + file_name;
+
+
+
+                String filePath = request.getSession().getServletContext().getRealPath("/") + "resources\\upload\\"
+                        + file_rename;
+
+                File newFile = new File(filePath);
+                Random r = new Random();
+
+                while (newFile.exists()) {
+                    file_rename = news.getNewsID() + "_" + Integer.toString(r.nextInt(100)) + "_" + file_name;
+                    filePath = request.getSession().getServletContext().getRealPath("/") + "resources\\upload\\"
+                            + file_rename;
+
+                    newFile = new File(filePath);
                 }
-                else
-                {
-                	//其他文件
+
+                String suffix = file_name.substring(file_name.lastIndexOf(".") + 1).toLowerCase();
+
+                //鍥剧墖鏂囦欢
+                if (Objects.equals(suffix, "bmp") || Objects.equals(suffix, "jpeg")
+                        || Objects.equals(suffix, "jpg") || Objects.equals(suffix, "png")) {
+
+                    photo = new photoModel();
+
+                    photo.setNewsID(news.getNewsID());
+                    photo.setPhotoName(file_rename);
+
+                    if (this.iinserttable.InsertTable(photo)) {
+                        file.transferTo(new File(filePath));
+                        return true;
+                    }
+                } else {
+
+                    accessory = new accessoryModel();
+
+                    accessory.setNewsID(news.getNewsID());
+                    accessory.setAccessoryName(file_rename);
+
+                    if (this.iinserttable.InsertTalbe(accessory)) {
+                        file.transferTo(new File(filePath));
+                        return true;
+                    }
                 }
-                	
-                
-                // 转存文件  
-                file.transferTo(new File(filePath));  
-                return true;  
-            } catch (Exception e) {  
-                e.printStackTrace();  
-            }  
-        }  
-        return false;  
-    }  
-    
-    
-    @RequestMapping(value= "/uploading",method=RequestMethod.POST)  
-    public String NewsUpload(HttpServletRequest request,Model model,RedirectAttributes attr) throws Exception {  
-          
-    	news.setTitle(new String(request.getParameter("news_title").getBytes("ISO-8859-1"),"UTF-8"));
-    	news.setSection(new String(request.getParameter("section").getBytes("ISO-8859-1"),"UTF-8"));
-    	news.setReleasePerson(new String(request.getParameter("person").getBytes("ISO-8859-1"),"UTF-8"));
-    	news.setText(new String(request.getParameter("content").getBytes("ISO-8859-1"),"UTF-8"));
-    	
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss"); 
-    	Date strD = dateFormat.parse(news.getNewsID());
-    	news.setReleaseDate(strD);
-    	
-    	admin.setName(new String(request.getParameter("person").getBytes("ISO-8859-1"),"UTF-8"));
-    	admin.setPassword(new String(request.getParameter("password").getBytes("ISO-8859-1"),"UTF-8"));
-    	
-    	boolean insertNews=this.iinserttable.InsertTable(news);
-    	
-    	//model.addAttribute("news", news);
-    	attr.addFlashAttribute("news", news);
-    	
-    	return "redirect:/upload"; 
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
-    
-    @RequestMapping(value= "/uploading/file",method=RequestMethod.POST)
-    public @ResponseBody UploadFile insertGoodsBrand(MultipartHttpServletRequest request,HttpServletResponse res)
-    {
-    	res.addHeader("Access-Control-Allow-Origin", "*");
-    	
-    	UploadFile file=new UploadFile();
- 	
-    	MultipartFile mf=request.getFile("files");
-    	
-    	if(mf!=null)
-    	{
-    		if(saveFile(mf))
-    		{
-    			file.setSuccess("success");
-    			file.setMsg(mf.getOriginalFilename());
-    		}
-    		else
-    		{
-    			file.setSuccess("failed");
-    			file.setMsg("failed");
-    		}
-    	}
-    	return file;
+
+
+    @RequestMapping(value = "/uploading", method = RequestMethod.POST)
+    public String NewsUpload(HttpServletRequest request, Model model, RedirectAttributes attr) throws Exception {
+
+        news.setNewsID(new String(request.getParameter("news_id").getBytes("ISO-8859-1"), "UTF-8"));
+        news.setTitle(new String(request.getParameter("news_title").getBytes("ISO-8859-1"), "UTF-8"));
+        news.setSection(new String(request.getParameter("section").getBytes("ISO-8859-1"), "UTF-8"));
+        news.setReleasePerson(new String(request.getParameter("person").getBytes("ISO-8859-1"), "UTF-8"));
+        news.setText(new String(request.getParameter("content").getBytes("ISO-8859-1"), "UTF-8"));
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date strD = dateFormat.parse(news.getNewsID());
+        news.setReleaseDate(strD);
+
+        admin.setName(new String(request.getParameter("person").getBytes("ISO-8859-1"), "UTF-8"));
+        admin.setPassword(new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8"));
+
+        boolean insertNews = this.iinserttable.InsertTable(news);
+
+        //model.addAttribute("news", news);
+        attr.addFlashAttribute("news", news);
+
+        return "redirect:/upload";
     }
-    
-    
-    
-    @RequestMapping(value= "/uploading/file1",method=RequestMethod.POST)  
-    public String fileUpload(@RequestParam("files") MultipartFile[] files,Model model,RedirectAttributes attr) {  
-        //判断file数组不能为空并且长度大于0  
-    	MultipartFile temp=null;
-    	
-        if(files!=null&&files.length>0){  
-            //循环获取file数组中得文件  
-            for(int i = 0;i<files.length;i++){  
-                MultipartFile file = files[i]; 
-                temp=file;
-               
-                //保存文件  
+
+    @RequestMapping(value = "/uploading/file", method = RequestMethod.POST)
+    public @ResponseBody
+    JsonResponse insertGoodsBrand(MultipartHttpServletRequest request, HttpServletResponse res) {
+        res.addHeader("Access-Control-Allow-Origin", "*");
+
+        JsonResponse file = new JsonResponse();
+
+        MultipartFile mf = request.getFile("files");
+
+        if (mf != null) {
+            if (saveFile(mf)) {
+                file.setSuccess("success");
+                file.setMsg(mf.getOriginalFilename());
+            } else {
+                file.setSuccess("failed");
+                file.setMsg("failed");
+            }
+        }
+        return file;
+    }
+
+
+     /*
+    @RequestMapping(value = "/uploading/file1", method = RequestMethod.POST)
+    public String fileUpload(@RequestParam("files") MultipartFile[] files, Model model, RedirectAttributes attr) {
+        //锟叫讹拷file锟斤拷锟介不锟斤拷为锟秸诧拷锟揭筹拷锟饺达拷锟斤拷0  
+        MultipartFile temp = null;
+
+        if (files != null && files.length > 0) {
+            //循锟斤拷锟斤拷取file锟斤拷锟斤拷锟叫碉拷锟侥硷拷  
+            for (MultipartFile file : files) {
+                temp = file;
+
+                //锟斤拷锟斤拷锟侥硷拷  
                 //saveFile(file);  
-            }  
-        }  
-        // 重定向  
-       // enctype="multipart/form-data"
-        //request.setAttribute("ma", "222");
-        
-        if(temp!=null)
-        	attr.addFlashAttribute("max",temp.getOriginalFilename());
-        
-        news.setNewsID(temp.getOriginalFilename());
-        
-        attr.addFlashAttribute("ididid",news);
-        
+            }
+        }
+
+        if (temp != null)
+            attr.addFlashAttribute("max", temp.getOriginalFilename());
+
+        news.setNewsID(temp != null ? temp.getOriginalFilename() : null);
+
+        attr.addFlashAttribute("ididid", news);
+
         //return upload(model);
-        return "redirect:/upload";  
-    }
+        return "redirect:/upload";
+    }*/
     
     
     /*
