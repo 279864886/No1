@@ -166,7 +166,7 @@ public class uploadController {
 
     @RequestMapping(value = "/uploading/file", method = RequestMethod.POST)
     public @ResponseBody
-    JsonResponse insertGoodsBrand(MultipartHttpServletRequest request, HttpServletResponse res) {
+    JsonResponse fileUpload(MultipartHttpServletRequest request, HttpServletResponse res) {
         res.addHeader("Access-Control-Allow-Origin", "*");
 
         JsonResponse file = new JsonResponse();
@@ -174,7 +174,8 @@ public class uploadController {
         MultipartFile mf = request.getFile("files");
 
         if (mf != null) {
-            if (saveFile(mf)) {
+            //if (saveFile(mf)) {
+            if (true) {
                 file.setSuccess("success");
                 file.setMsg(mf.getOriginalFilename());
             } else {

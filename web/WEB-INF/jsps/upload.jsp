@@ -51,8 +51,14 @@
                 cache: false,
                 processData: false,
                 contentType: false,
-                success: function (gujianfeng) {
-                    $("#file_upload_id").append("<div class=\"form_row\"><p>" + gujianfeng.msg + "</p></div>");
+                success: function (data) {
+                    $("#file_upload_id").append("<div class=\"form_row\"><p>" + data.msg + "</p></div>");
+                    var temp=data.success;
+
+                    if(temp==="success")
+                        alert("文件上传成功！");
+                    else if(temp==="failed")
+                        alert("文件上传失败，联系管理员！");
                 }
             });
         }
