@@ -20,27 +20,13 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.dataTables.css"/>
 
 
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/dataTables.bootstrap.js"></script>
-    <script type="text/javascript"
-            src="<%=request.getContextPath()%>/resources/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/dataTables.bootstrap.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#example').dataTable({
-                "bPaginate": true, //翻页功能
-                "bLengthChange": true, //改变每页显示数据数量
-                "bFilter": true, //过滤功能
-                "bSort": true, //排序功能
-                "bInfo": true,//页脚信息
-                "bAutoWidth": true//自动宽度
-            });
-        });
 
-    </script>
+
 
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/cufon-yui.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/GeosansLight_500.font.js" type="text/javascript"></script>
@@ -83,17 +69,21 @@
 
     <div class="center_content_pages">
 
+        <h2 style="text-align: center">运载领域一周会议安排${date}</h2>
+
+
+
         <table cellpadding="0" cellspacing="0" border="0" class="dataTable" id="example">
             <thead>
             <tr>
-                <th>日期</th>
-                <th>开始时间</th>
-                <th>结束时间</th>
-                <th>内容</th>
-                <th>地点</th>
-                <th>主办处室</th>
-                <th>经办人</th>
-                <th>参加单位</th>
+                <th style="width:10%">日期</th>
+                <th style="width:8%">开始时间</th>
+                <th style="width:8%">结束时间</th>
+                <th style="width:25%">内容</th>
+                <th style="width:10%">地点</th>
+                <th style="width:8%">主办处室</th>
+                <th style="width:10%">经办人</th>
+                <th style="width:14%">参加单位</th>
                 <th>备注</th>
             </tr>
             </thead>
@@ -151,5 +141,22 @@
 
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').dataTable({
+            "bPaginate": false, //翻页功能
+            "bLengthChange": false, //改变每页显示数据数量
+            "bFilter": true, //过滤功能
+            "bSort": false, //排序功能
+            "bInfo": false,//页脚信息
+            "bAutoWidth": true//自动宽度
+        });
+    });
+
+</script>
+
+
 </body>
+
+
 </html>
