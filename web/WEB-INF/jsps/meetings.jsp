@@ -133,7 +133,7 @@
         <div class="footer_right">
             <a href="<%=request.getContextPath()%>/index">主页</a>
             <a href="<%=request.getContextPath()%>/about">关于我们</a>
-            <a href="<%=request.getContextPath()%>/upload">管理员</a>
+            <a href="<%=request.getContextPath()%>/meetingUpload">一周安排上传</a>
         </div>
         <div class="clear"></div>
     </div>

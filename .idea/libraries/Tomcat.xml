@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Tomcat">
     <CLASSES>
-      <root url="file://$USER_HOME$/Desktop/apache-tomcat-9.0.0.M10/lib" />
+      <root url="file://D:/Work/apache-tomcat-9.0.0.M10/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.ideaLibSources/poi-ooxml-3.16-sources.jar!/" />
       <root url="jar://$USER_HOME$/.ideaLibSources/poi-3.16-sources.jar!/" />
     </SOURCES>
-    <jarDirectory url="file://$USER_HOME$/Desktop/apache-tomcat-9.0.0.M10/lib" recursive="false" />
+    <jarDirectory url="file://D:/Work/apache-tomcat-9.0.0.M10/lib" recursive="false" />
   </library>
 </component>
