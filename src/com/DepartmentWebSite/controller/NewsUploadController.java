@@ -38,7 +38,7 @@ import com.DepartmentWebSite.service.impl.IInsertTableImpl;
 
 @Controller
 @RequestMapping("/upload")
-public class uploadController {
+public class NewsUploadController {
 
     IUploadNews iuploadnews;
     IInsertTalbe iinserttable;
@@ -50,7 +50,7 @@ public class uploadController {
     photoModel photo;
     accessoryModel accessory;
 
-    public uploadController() {
+    public NewsUploadController() {
         this.iuploadnews = new IUploadNewsImpl();
         this.iinserttable = new IInsertTableImpl();
     }
@@ -159,7 +159,7 @@ public class uploadController {
         boolean insertNews = this.iinserttable.InsertTable(news);
 
         //model.addAttribute("news", news);
-        attr.addFlashAttribute("news", news);
+        //attr.addFlashAttribute("news", news);
 
         return "redirect:/upload";
     }
@@ -169,21 +169,23 @@ public class uploadController {
     JsonResponse fileUpload(MultipartHttpServletRequest request, HttpServletResponse res) {
         res.addHeader("Access-Control-Allow-Origin", "*");
 
-        JsonResponse file = new JsonResponse();
+        JsonResponse json = new JsonResponse();
 
         MultipartFile mf = request.getFile("files");
 
         if (mf != null) {
-            //if (saveFile(mf)) {
-            if (true) {
-                file.setSuccess("success");
-                file.setMsg(mf.getOriginalFilename());
+            if (saveFile(mf)) {
+                json.setSuccess("success");
+                json.setMsg(mf.getOriginalFilename());
             } else {
-                file.setSuccess("failed");
-                file.setMsg("failed");
+                json.setSuccess("failed");
+                json.setMsg("failed");
             }
+
+            return json;
         }
-        return file;
+
+        return null;
     }
 
 

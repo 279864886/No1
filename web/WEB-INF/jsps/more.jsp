@@ -86,7 +86,7 @@ $(document).ready(function(){
         
 <div class="footer">
     <div class="copyrights">
-    @2017 第一事业部测发控系统室出品
+    @2017 第一事业部测发控系统室出品（建议使用Firefox或Chrome浏览器，你懂的）
     </div>
     <div class="footer_right">
     <a href="<%=request.getContextPath()%>/index">主页</a>

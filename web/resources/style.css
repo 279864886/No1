@@ -225,7 +225,6 @@ white-space:nowrap;
 .morenews p{
 	text-decoration:none;
 	float: left;
-	margin-left: 142px;
 	font-size: 12px;
 	
 }
@@ -235,9 +234,9 @@ white-space:nowrap;
 }
 
 .morenews img{
-	width: auto;
+	width: 100%;
+	height: 100%;
 	clear: both;
-	display: table-cell;
 	margin:auto; 
 	text-align:center;
 }

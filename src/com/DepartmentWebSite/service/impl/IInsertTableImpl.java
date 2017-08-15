@@ -3,6 +3,7 @@ package com.DepartmentWebSite.service.impl;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.DepartmentWebSite.model.MeetingsDataEntity;
 import com.DepartmentWebSite.model.accessoryModel;
 import com.DepartmentWebSite.model.newsModel;
 import com.DepartmentWebSite.model.photoModel;
@@ -89,5 +90,37 @@ public class IInsertTableImpl implements IInsertTalbe {
 		
 		return re;
 	}
+
+	@Override
+	public boolean InsertTable(MeetingsDataEntity meetings) throws SQLException {
+		String sql="insert into meetings (start_date,end_date,content,locate,sponsor,agent,participant,remarks) "
+				+"values (?,?,?,?,?,?,?,?)";
+
+		PreparedStatement pstmt;
+
+		try {
+
+			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/department?characterEncoding=UTF-8", "chenwenhao", "cwh@222222");
+
+			pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			pstmt.setTimestamp(1,meetings.getMeetingStartDate());
+			pstmt.setTimestamp(2, meetings.getMeetingEndDate());
+			pstmt.setString(3, meetings.getMeetingContent());
+			pstmt.setString(4, meetings.getMeetingLocate());
+			pstmt.setString(5, meetings.getMeetingSponsor());
+			pstmt.setString(6,meetings.getMeetingAgent());
+			pstmt.setString(7,meetings.getMeetingParticipant());
+			pstmt.setString(8,meetings.getMeetingRemarks());
+
+			int i = pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 
 }

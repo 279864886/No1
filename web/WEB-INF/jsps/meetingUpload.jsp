@@ -67,22 +67,62 @@
     <div class="center_content_pages">
         <h2 style="text-align: center">运载领域一周会议安排上传</h2>
 
+        <div class="form">
 
-        <form id="file_upload_id" action="<%=request.getContextPath()%>/upload/uploading/file" method="post"
-              enctype="multipart/form-data">
-            <div class="form_row">
-                <a id="add_file" onclick="type_file()" href="javascript:void(0)">一周安排文件</a>
-                <input type="file" class="form_file1" id="files" name="files"
-                       onchange="FileUpload_onselect(this)"/>
-            </div>
-        </form>
+            <form id="meetings" action="<%=request.getContextPath()%>/meetingUpload/meetings" method="post">
+                <div class="form_row">
+                    <label>上传人:</label>
+                    <input type="text" class="form_input" id="person" name="person"/>
+                </div>
+
+                <div class="form_row">
+                    <label>密码:</label>
+                    <input type="password" class="form_input" id="password" name="password"/>
+                </div>
+
+                <input type="button" class="form_submit" value="上传" onclick="meetings_upload_submit()"/>
+            </form>
+
+
+            <form id="file_upload_id" action="<%=request.getContextPath()%>/meetingUpload/meetings/file" method="post"
+                  enctype="multipart/form-data">
+                <div class="form_row">
+                    <a id="add_file" onclick="type_file()" href="javascript:void(0)">一周安排文件</a>
+                    <input type="file" class="form_file1" id="files" name="files"
+                           onchange="FileUpload_onselect(this)"/>
+                </div>
+            </form>
+
+
+
+        </div>
+
+
+        <table cellpadding="0" cellspacing="0" border="0" class="dataTable" id="example">
+            <thead>
+            <tr>
+                <th style="width:10%">日期</th>
+                <th style="width:8%">开始时间</th>
+                <th style="width:8%">结束时间</th>
+                <th style="width:25%">内容</th>
+                <th style="width:10%">地点</th>
+                <th style="width:8%">主办处室</th>
+                <th style="width:10%">经办人</th>
+                <th style="width:14%">参加单位</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
 
 
     </div>
 
     <div class="footer">
         <div class="copyrights">
-            @2017 第一事业部测发控系统室出品
+            @2017 第一事业部测发控系统室出品（建议使用Firefox或Chrome浏览器，你懂的）
         </div>
         <div class="footer_right">
             <a href="<%=request.getContextPath()%>/index">主页</a>
@@ -94,23 +134,30 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#example').dataTable({
-            "bPaginate": false, //翻页功能
-            "bLengthChange": false, //改变每页显示数据数量
-            "bFilter": true, //过滤功能
-            "bSort": false, //排序功能
-            "bInfo": false,//页脚信息
-            "bAutoWidth": true//自动宽度
-        });
+
     });
 
     function type_file() {
         $(":file").trigger("click");
     }
 
+    function meetings_upload_submit() {
+        var intGridviewRowCount = $("table[id$='example']>tbody").children("tr").length;
+
+        if ($("#person").val() == "" || $("#password").val() == "") {
+            alert("上传人的姓名或密码不能为空！！！");
+        }
+        else if(intGridviewRowCount<=0){
+            alert("doc文件未上传！！！");
+        }
+        else {
+            $("#meetings").submit();
+        }
+    }
+
     function FileUpload_onselect(node) {
 
-        var URL = "http://" + location.host + "/No1/meetingUpload/file";
+        var URL = "http://" + location.host + "/No1/meetingUpload/meetings/file";
         var files = $("#files").prop("files");
         var data = new FormData();
         data.append("files", files[0]);
@@ -126,8 +173,57 @@
                 $("#file_upload_id").append("<div class=\"form_row\"><p>" + data.msg + "</p></div>");
                 var temp = data.success;
 
-                if (temp === "success")
-                    alert("文件上传成功！");
+
+
+                if (temp === "success") {
+                    //alert("文件上传成功！");
+
+                    //var t=  $("#example").dataTable();
+                    var meetings=data.meetings;
+
+                    for(var i = 0; i < meetings.length; i++)
+                    {
+                        var meeting=meetings[i];
+                        if(i%2==0){
+                            $("#tbody").append("<tr style=\"background-color: #b1acb0\">" +
+                                            "<td>"+meeting.dateDisplay+"</td>" +
+                                            "<td>"+meeting.startDisplay+"</td>" +
+                                            "<td>"+meeting.endDisplay+"</td>" +
+                                            "<td>"+meeting.meetingContent+"</td>" +
+                                            "<td>"+meeting.meetingLocate+"</td>" +
+                                            "<td>"+meeting.meetingSponsor+"</td>" +
+                                            "<td>"+meeting.meetingAgent+"</td>" +
+                                            "<td>"+meeting.meetingParticipant+"</td>" +
+                                            "<td>"+meeting.meetingRemarks+"</td></tr>");
+                        }
+                        else{
+                            $("#tbody").append("<tr>" +
+                                "<td>"+meeting.dateDisplay+"</td>" +
+                                "<td>"+meeting.startDisplay+"</td>" +
+                                "<td>"+meeting.endDisplay+"</td>" +
+                                "<td>"+meeting.meetingContent+"</td>" +
+                                "<td>"+meeting.meetingLocate+"</td>" +
+                                "<td>"+meeting.meetingSponsor+"</td>" +
+                                "<td>"+meeting.meetingAgent+"</td>" +
+                                "<td>"+meeting.meetingParticipant+"</td>" +
+                                "<td>"+meeting.meetingRemarks+"</td></tr>");
+                        }
+
+                    }
+
+                    $('#example').dataTable({
+                        "bPaginate": false, //翻页功能
+                        "bLengthChange": false, //改变每页显示数据数量
+                        "bFilter": false, //过滤功能
+                        "bSort": false, //排序功能
+                        "bInfo": false,//页脚信息
+                        "bAutoWidth": true//自动宽度
+                    });
+
+
+
+                }
+
                 else if (temp === "failed")
                     alert("文件上传失败，联系管理员！");
             }

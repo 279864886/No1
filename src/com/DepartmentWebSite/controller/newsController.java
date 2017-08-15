@@ -13,39 +13,43 @@ import com.DepartmentWebSite.service.IGetCurrentNews;
 import com.DepartmentWebSite.service.IGetZYTZ;
 import com.DepartmentWebSite.service.impl.IGetCurrentNewsImpl;
 import com.DepartmentWebSite.service.impl.IGetZYTZImpl;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/news")
 public class newsController {
-	
-	private IGetCurrentNews igetcurrnews;
-	
-	 public newsController() {
-		this.igetcurrnews=new IGetCurrentNewsImpl();
-	}
-	
-	
-	@RequestMapping("/{id}")
-	public String index(Model model,@PathVariable("id") String id) throws SQLException
-	{
-		//id
-		newsModel news= this.igetcurrnews.GetCurrentNews(id);
-		
-		if(news!=null)
-		{
-			model.addAttribute("currentnews", news);
-			
-			photoModel photo=this.igetcurrnews.GetCurrentNewsPhoto(id);
-			
-			//if(photo!=null)
-			{
-				model.addAttribute("currentphoto", photo);
-			}
-		}
-		
-		
-		
-		return "news";
-	}
+
+    private IGetCurrentNews igetcurrnews;
+
+    public newsController() {
+        this.igetcurrnews = new IGetCurrentNewsImpl();
+    }
+
+//    @RequestMapping()
+//    public String index()
+//    {
+//        return "news";
+//    }
+
+
+    @RequestMapping("/id/{id}")
+    public String index(@PathVariable("id") String id,Model model) throws SQLException {
+        //id
+        newsModel news = this.igetcurrnews.GetCurrentNews(id);
+
+        if (news != null) {
+            model.addAttribute("currentnews", news);
+
+            photoModel photo = this.igetcurrnews.GetCurrentNewsPhoto(id);
+
+            if(photo!=null)
+            {
+                model.addAttribute("currentphoto", photo);
+            }
+        }
+
+
+        return "news";
+    }
 
 }
