@@ -2,6 +2,7 @@ package com.DepartmentWebSite.controller;
 
 import java.sql.SQLException;
 
+import com.DepartmentWebSite.model.accessoryModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class newsController {
 
 
     @RequestMapping("/id/{id}")
-    public String index(@PathVariable("id") String id,Model model) throws SQLException {
+    public String index(@PathVariable("id") String id, Model model) throws SQLException {
         //id
         newsModel news = this.igetcurrnews.GetCurrentNews(id);
 
@@ -41,10 +42,14 @@ public class newsController {
             model.addAttribute("currentnews", news);
 
             photoModel photo = this.igetcurrnews.GetCurrentNewsPhoto(id);
+            accessoryModel accessory = this.igetcurrnews.GetCurrentNewsAccessory(id);
 
-            if(photo!=null)
-            {
+            if (photo != null) {
                 model.addAttribute("currentphoto", photo);
+            }
+
+            if (accessory != null) {
+                model.addAttribute("currentfile", accessory);
             }
         }
 

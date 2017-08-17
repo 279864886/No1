@@ -30,43 +30,47 @@ public class moreController {
 
     @RequestMapping("/{section}")
     public String index(Model model, @PathVariable("section") String section) throws SQLException {
-        String str = "";
+        String str;
 
         switch (section) {
-            case "zytz": {
+            case "notification": {
                 str = "重要通知";
                 break;
             }
-            case "zlxx": {
-                str = "质量信息";
+            case "quality": {
+                str = "质量动态";
                 break;
             }
-            case "bmdt": {
-                str = "部门动态";
+            case "culture": {
+                str = "部门文化";
                 break;
             }
-            case "ryb": {
+            case "honor": {
                 str = "荣誉榜";
                 break;
             }
-            case "bcjs": {
-                str = "靶场纪实";
+            case "report": {
+                str = "外场纪实";
                 break;
             }
-            case "qyzx": {
-                str = "前沿资讯";
+            case "product": {
+                str = "产品简介";
                 break;
             }
             case "zsk": {
                 str = "知识库";
                 break;
             }
-            case "sjgf": {
-                str = "设计规范";
+            case "standard": {
+                str = "标准规范";
                 break;
             }
-            case "gzzd": {
+            case "rules": {
                 str = "规章制度";
+                break;
+            }
+            case "knowledge": {
+                str = "知识库相关";
                 break;
             }
             default:
@@ -75,7 +79,7 @@ public class moreController {
 
 
         //id
-        newsModel[] news = this.igetallnews.GetIndexPageNews(str);
+        newsModel[] news = this.igetallnews.GetIndexPageNews(section);
 
         if (news != null) {
             morenewsModel[] morenews = new morenewsModel[news.length];
@@ -84,7 +88,7 @@ public class moreController {
                 morenews[i] = new morenewsModel();
 
                 morenews[i].setNewsID(news[i].getNewsID());
-                morenews[i].setTitle(news[i].getTitle() + "&nbsp&nbsp&nbsp&nbsp" + news[i].getReleaseDate());
+                morenews[i].setTitle(news[i].getTitle());
             }
 
 

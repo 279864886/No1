@@ -31,7 +31,7 @@ public class IGetAllNewsImpl implements IGetAllNews {
 		
 		this.imysql.connSQL();
 		
-		String str="select * from news where newsSection='" + section+ "' order by ID desc";
+		String str="select * from news where newsSection='" + section+ "' order by releaseDate desc";
 		
 		ResultSet rs = this.imysql.selectSQL(str);
 		

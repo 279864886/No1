@@ -3,6 +3,7 @@ package com.DepartmentWebSite.service.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.DepartmentWebSite.model.accessoryModel;
 import com.DepartmentWebSite.model.newsModel;
 import com.DepartmentWebSite.model.photoModel;
 import com.DepartmentWebSite.service.IGetCurrentNews;
@@ -150,6 +151,34 @@ public class IGetCurrentNewsImpl implements IGetCurrentNews {
                     photo.setPhotoName(rs.getString("photoName"));
                     photo.setNewsID(newsID);
                     return photo;
+                }
+            }
+        }
+
+
+        return null;
+    }
+
+    @Override
+    public accessoryModel GetCurrentNewsAccessory(String newsID) throws SQLException {
+        newsModel news = GetCurrentNews(newsID);
+
+        if (news != null) {
+            accessoryModel accessory = new accessoryModel();
+
+            this.imysql.connSQL();
+
+            //String sql=String.format(format, args)
+
+            String sql="select * from accessory where newsID='"+newsID+"';";
+
+            ResultSet rs = this.imysql.selectSQL(sql);
+
+            if (rs != null) {
+                if (rs.next()) {
+                    accessory.setAccessoryName(rs.getString("fileName"));
+                    accessory.setNewsID(newsID);
+                    return accessory;
                 }
             }
         }

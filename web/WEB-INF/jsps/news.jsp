@@ -36,18 +36,18 @@
 
             <li><a>应知应会</a>
                 <ul>
-                    <li><a href="" title="">设计标准</a></li>
-                    <li><a href="" title="">三层次文件</a></li>
-                    <li><a href="<%=request.getContextPath()%>/more/zsk" title="">知识库相关</a></li>
+                    <li><a href="<%=request.getContextPath()%>/more/standard" title="">标准规范</a></li>
+                    <li><a href="<%=request.getContextPath()%>/more/rules" title="">规章制度</a></li>
+                    <li><a href="<%=request.getContextPath()%>/more/knowledge" title="">知识库相关</a></li>
                 </ul>
             </li>
 
             <li><a>友情链接</a>
                 <ul>
-                    <li><a href="www.804.sast.casc/main.asp" title="">电子所主页</a></li>
-                    <li><a href="www.804.sast.casc/main/index.asp" title="">保密处</a></li>
-                    <li><a href="10.123.0.25/caiwu" title="">财务处</a></li>
-                    <li><a href="10.123.0.21:8089/index.html" title="">质量保障部</a></li>
+                    <li><a href="http://www.804.sast.casc/main.asp" title="">电子所主页</a></li>
+                    <li><a href="http://www.804.sast.casc/main/index.asp" title="">保密处</a></li>
+                    <li><a href="http://10.123.0.25/caiwu" title="">财务处</a></li>
+                    <li><a href="http://10.123.0.21:8089/index.html" title="">质量保障部</a></li>
                 </ul>
             </li>
             <li><a href="<%=request.getContextPath()%>/meetings">一周会议安排</a></li>
@@ -71,7 +71,11 @@
             <p>${currentnews.text}</p>
 
 
-            <!--a href="<%=request.getContextPath()%>/resources/doc/1.docx">11111</a>  -->
+            <c:if test="${not empty currentfile}">
+                <a style="float: " href="<%=request.getContextPath()%>/resources/upload/${currentfile.accessoryName}">${currentfile.accessoryName}</a>
+            </c:if>
+
+
 
         </div>
 
@@ -87,7 +91,7 @@
         <div class="footer_right">
             <a href="<%=request.getContextPath()%>/index">主页</a>
             <a href="<%=request.getContextPath()%>/about">关于我们</a>
-            <a href="#">一周安排</a>
+            <a href="<%=request.getContextPath()%>/meetings">一周安排</a>
             <a href="<%=request.getContextPath()%>/upload">管理员</a>
         </div>
         <div class="clear"></div>
