@@ -31,7 +31,7 @@ public class IGetAllMeetingsImpl implements IGetAllMeetings {
 
         this.imysql.connSQL();
 
-        String str="select * from meetings where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(start_date);";
+        String str="SELECT * FROM meetings WHERE DATE_SUB(CURDATE(),INTERVAL (SELECT WEEKDAY(CURDATE())) DAY) <= DATE(start_date);";
         //String str="select * from meetings";
         ResultSet rs = this.imysql.selectSQL(str);
 

@@ -72,7 +72,8 @@
 
 
             <c:if test="${not empty currentfile}">
-                <a style="float: " href="<%=request.getContextPath()%>/resources/upload/${currentfile.accessoryName}">${currentfile.accessoryName}</a>
+                <a href="<%=request.getContextPath()%>/resources/upload/${currentfile.accessoryName}">
+                        ${currentfile.accessoryName}</a>
             </c:if>
 
 
