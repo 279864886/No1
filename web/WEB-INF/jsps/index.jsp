@@ -22,7 +22,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/cufon-yui.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/GeosansLight_500.font.js" type="text/javascript"></script>
 
-
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/vue-2.5.9.min.js"></script>
     <!-- Cufon END  -->
 </head>
 <body>
@@ -210,6 +210,7 @@
     </div>
 
 </div> <!--end of main container-->
+
 
 </body>
 </html>

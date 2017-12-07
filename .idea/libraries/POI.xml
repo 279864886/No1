@@ -4,9 +4,7 @@
       <root url="file://$PROJECT_DIR$/lib/POI" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.ideaLibSources/poi-scratchpad-3.16-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
     <jarDirectory url="file://$PROJECT_DIR$/lib/POI" recursive="false" />
   </library>
 </component>
