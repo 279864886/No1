@@ -14,7 +14,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>第一事业部部门主页</title>
+    <title>运载领域一周安排</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/style.css"/>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/dataTables.bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/jquery.dataTables.css"/>
@@ -55,10 +55,10 @@
 
             <li><a>友情链接</a>
                 <ul>
-                    <li><a href="www.804.sast.casc/main.asp" title="">电子所主页</a></li>
-                    <li><a href="www.804.sast.casc/main/index.asp" title="">保密处</a></li>
-                    <li><a href="10.123.0.25/caiwu" title="">财务处</a></li>
-                    <li><a href="10.123.0.21:8089/index.html" title="">质量保障部</a></li>
+                    <li><a href="http://www.804.sast.casc/main.asp" title="">电子所主页</a></li>
+                    <li><a href="http://www.804.sast.casc/main/index.asp" title="">保密处</a></li>
+                    <li><a href="http://10.123.0.25/caiwu" title="">财务处</a></li>
+                    <li><a href="http://10.123.0.21:8089/index.html" title="">质量保障部</a></li>
                 </ul>
             </li>
             <li><a href="<%=request.getContextPath()%>/meetings">一周会议安排</a></li>
@@ -128,7 +128,7 @@
 
     <div class="footer">
         <div class="copyrights">
-            @2017 第一事业部测发控系统室出品
+            @2017 第一事业部测发控系统室出品（建议使用Firefox或Chrome浏览器，你懂的）
         </div>
         <div class="footer_right">
             <a href="<%=request.getContextPath()%>/index">主页</a>

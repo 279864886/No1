@@ -31,7 +31,7 @@ public class IGetAllNewsImpl implements IGetAllNews {
 		
 		this.imysql.connSQL();
 		
-		String str="select * from news where newsSection='" + section+ "' order by ID desc";
+		String str="select * from news where newsSection='" + section+ "' order by releaseDate desc";
 		
 		ResultSet rs = this.imysql.selectSQL(str);
 		
@@ -141,9 +141,9 @@ public class IGetAllNewsImpl implements IGetAllNews {
 		// TODO Auto-generated method stub
 		this.imysql.connSQL();
 				
-		String str="select news.newsTitle,news.newsID,rolling.img from news,rolling "
-				 + "where news.newsID=rolling.newsID "
-				 + "order by rolling.ID desc limit "+Integer.toString(limit)+";";
+		String str="select news.newsTitle,news.newsID,photo.photoName from news,photo "
+				 + "where news.newsID=photo.newsID "
+				 + "order by photo.ID desc limit "+Integer.toString(limit)+";";
 		
 		ResultSet rs = this.imysql.selectSQL(str);
 		
@@ -179,8 +179,8 @@ public class IGetAllNewsImpl implements IGetAllNews {
 				nm[i]=new rollingNewsModel();
 			
 				nm[i].setNewsID(rs.getString("newsID"));
-				nm[i].setTitle(rs.getString("title"));
-				nm[i].setPhotoID(rs.getString("PhotoID"));
+				nm[i].setTitle(rs.getString("newsTitle"));
+				nm[i].setPhotoID(rs.getString("photoName"));
 			}
 		}
 		this.imysql.deconnSQL();

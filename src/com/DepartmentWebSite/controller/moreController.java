@@ -19,98 +19,86 @@ import com.DepartmentWebSite.service.impl.IGetCurrentNewsImpl;
 @RequestMapping("/more")
 
 public class moreController {
-	
-	private IGetAllNews igetallnews;
-	
-	
-	
-	 public moreController() {
-		this.igetallnews=new IGetAllNewsImpl();
-	}
-	
-	
-	
-	@RequestMapping("/{section}")
-	public String index(Model model,@PathVariable("section") String section) throws SQLException
-	{
-		String str="";		
-		
-		switch(section)
-		{
-			case "zytz":
-			{
-				str="重要通知";
-				break;
-			}
-			case "zlxx":
-			{
-				str="质量信息";
-				break;
-			}
-			case "bmdt":
-			{
-				str="部门动态";
-				break;
-			}
-			case "ryb":
-			{
-				str="荣誉榜";
-				break;
-			}
-			case "bcjs":
-			{
-				str="靶场纪实";
-				break;
-			}
-			case "qyzx":
-			{
-				str="前沿资讯";
-				break;
-			}
-			case "zsk":
-			{
-				str="知识库";
-				break;
-			}
-			case "sjgf":
-			{
-				str="设计规范";
-				break;
-			}
-			case "gzzd":
-			{
-				str="规章制度";
-				break;
-			}
-			default:
-				str="";
-		}
-		
-		
-		//id
-		newsModel[] news= this.igetallnews.GetIndexPageNews(str);
-		
-		if(news!=null)
-		{
-			morenewsModel[] morenews=new morenewsModel[news.length];
-			
-			for(int i=0;i<news.length;i++)
-			{
-				morenews[i]=new morenewsModel();
-				
-				morenews[i].setNewsID(news[i].getNewsID());
-				morenews[i].setTitle(news[i].getTitle()+"&nbsp&nbsp&nbsp&nbsp"+news[i].getReleaseDate());
-			}
-			
-			
-			
-			model.addAttribute("listname", news);
-		}
-		
-		
-		model.addAttribute("title",str);
-		
-		
-		return "more";
-	}
+
+    private IGetAllNews igetallnews;
+
+
+    public moreController() {
+        this.igetallnews = new IGetAllNewsImpl();
+    }
+
+
+    @RequestMapping("/{section}")
+    public String index(Model model, @PathVariable("section") String section) throws SQLException {
+        String str;
+
+        switch (section) {
+            case "notification": {
+                str = "重要通知";
+                break;
+            }
+            case "quality": {
+                str = "质量动态";
+                break;
+            }
+            case "culture": {
+                str = "部门文化";
+                break;
+            }
+            case "honor": {
+                str = "荣誉榜";
+                break;
+            }
+            case "report": {
+                str = "外场纪实";
+                break;
+            }
+            case "product": {
+                str = "产品简介";
+                break;
+            }
+            case "zsk": {
+                str = "知识库";
+                break;
+            }
+            case "standard": {
+                str = "标准规范";
+                break;
+            }
+            case "rules": {
+                str = "规章制度";
+                break;
+            }
+            case "knowledge": {
+                str = "知识库相关";
+                break;
+            }
+            default:
+                str = "";
+        }
+
+
+        //id
+        newsModel[] news = this.igetallnews.GetIndexPageNews(section);
+
+        if (news != null) {
+            morenewsModel[] morenews = new morenewsModel[news.length];
+
+            for (int i = 0; i < news.length; i++) {
+                morenews[i] = new morenewsModel();
+
+                morenews[i].setNewsID(news[i].getNewsID());
+                morenews[i].setTitle(news[i].getTitle());
+            }
+
+
+            model.addAttribute("listname", news);
+        }
+
+
+        model.addAttribute("title", str);
+
+
+        return "more";
+    }
 }

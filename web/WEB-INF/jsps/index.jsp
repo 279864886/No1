@@ -48,10 +48,10 @@
 
             <li><a>友情链接</a>
                 <ul>
-                    <li><a href="www.804.sast.casc/main.asp" title="">电子所主页</a></li>
-                    <li><a href="www.804.sast.casc/main/index.asp" title="">保密处</a></li>
-                    <li><a href="10.123.0.25/caiwu" title="">财务处</a></li>
-                    <li><a href="10.123.0.21:8089/index.html" title="">质量保障部</a></li>
+                    <li><a href="http://www.804.sast.casc/main.asp" title="">电子所主页</a></li>
+                    <li><a href="http://www.804.sast.casc/main/index.asp" title="">保密处</a></li>
+                    <li><a href="http://10.123.0.25/caiwu" title="">财务处</a></li>
+                    <li><a href="http://10.123.0.21:8089/index.html" title="">质量保障部</a></li>
                 </ul>
             </li>
             <li><a href="<%=request.getContextPath()%>/meetings">一周会议安排</a></li>
@@ -65,31 +65,31 @@
         <div class="slider_content">
             <div id="featured">
                 <div id="fragment-1" class="ui-tabs-panel" style="">
-                    <img src="<%=request.getContextPath()%>/resources/images/${roll1.photoID}" alt="" title=""
+                    <img src="<%=request.getContextPath()%>/resources/upload/${roll1.photoID}" alt="" title=""
                          border="0"/>
 
                 </div>
 
                 <div id="fragment-2" class="ui-tabs-panel" style="">
-                    <img src="<%=request.getContextPath()%>/resources/images/${roll2.photoID}" alt="" title=""
+                    <img src="<%=request.getContextPath()%>/resources/upload/${roll2.photoID}" alt="" title=""
                          border="0"/>
 
                 </div>
 
                 <div id="fragment-3" class="ui-tabs-panel" style="">
-                    <img src="<%=request.getContextPath()%>/resources/images/${roll3.photoID}" alt="" title=""
+                    <img src="<%=request.getContextPath()%>/resources/upload/${roll3.photoID}" alt="" title=""
                          border="0"/>
 
                 </div>
 
                 <div id="fragment-4" class="ui-tabs-panel" style="">
-                    <img src="<%=request.getContextPath()%>/resources/images/${roll4.photoID}" alt="" title=""
+                    <img src="<%=request.getContextPath()%>/resources/upload/${roll4.photoID}" alt="" title=""
                          border="0"/>
 
                 </div>
 
                 <div id="fragment-5" class="ui-tabs-panel" style="">
-                    <img src="<%=request.getContextPath()%>/resources/images/${roll5.photoID}" alt="" title=""
+                    <img src="<%=request.getContextPath()%>/resources/upload/${roll5.photoID}" alt="" title=""
                          border="0"/>
 
                 </div>
@@ -118,11 +118,11 @@
             <h2>重要通知</h2>
             <img src="<%=request.getContextPath()%>/resources/images/pic1.jpg" alt="" title="" border="0"/><br>
 
-            <a href="<%=request.getContextPath()%>/news/${zytz1.newsID}" class="juan">${zytz1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zytz2.newsID}" class="juan">${zytz2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zytz3.newsID}" class="juan">${zytz3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zytz4.newsID}" class="juan">${zytz4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zytz5.newsID}" class="juan">${zytz5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zytz1.newsID}" class="juan">${zytz1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zytz2.newsID}" class="juan">${zytz2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zytz3.newsID}" class="juan">${zytz3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zytz4.newsID}" class="juan">${zytz4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zytz5.newsID}" class="juan">${zytz5.title}</a><br>
 
             <a href="<%=request.getContextPath()%>/more/notification" class="more">更多</a>
         </div>
@@ -130,22 +130,22 @@
         <div class="leftbox">
             <h2>质量动态</h2>
             <img src="<%=request.getContextPath()%>/resources/images/pic2.jpg" alt="" title="" border="0"/><br>
-            <a href="<%=request.getContextPath()%>/news/${zlxx1.newsID}" class="juan">${zlxx1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zlxx2.newsID}" class="juan">${zlxx2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zlxx3.newsID}" class="juan">${zlxx3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zlxx4.newsID}" class="juan">${zlxx4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${zlxx5.newsID}" class="juan">${zlxx5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zlxx1.newsID}" class="juan">${zlxx1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zlxx2.newsID}" class="juan">${zlxx2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zlxx3.newsID}" class="juan">${zlxx3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zlxx4.newsID}" class="juan">${zlxx4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${zlxx5.newsID}" class="juan">${zlxx5.title}</a><br>
             <a href="<%=request.getContextPath()%>/more/quality" class="more">更多</a>
         </div>
 
         <div class="leftbox_right">
             <h2>部门文化</h2>
             <img src="<%=request.getContextPath()%>/resources/images/pic3.jpg" alt="" title="" border="0"/><br>
-            <a href="<%=request.getContextPath()%>/news/${bmdt1.newsID}" class="juan">${bmdt1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bmdt2.newsID}" class="juan">${bmdt2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bmdt3.newsID}" class="juan">${bmdt3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bmdt4.newsID}" class="juan">${bmdt4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bmdt5.newsID}" class="juan">${bmdt5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bmdt1.newsID}" class="juan">${bmdt1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bmdt2.newsID}" class="juan">${bmdt2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bmdt3.newsID}" class="juan">${bmdt3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bmdt4.newsID}" class="juan">${bmdt4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bmdt5.newsID}" class="juan">${bmdt5.title}</a><br>
             <a href="<%=request.getContextPath()%>/more/culture" class="more">更多</a>
         </div>
 
@@ -156,11 +156,11 @@
 
         <div class="leftbox">
             <h2>荣誉榜</h2>
-            <a href="<%=request.getContextPath()%>/news/${ryb1.newsID}" class="juan">${ryb1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${ryb2.newsID}" class="juan">${ryb2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${ryb3.newsID}" class="juan">${ryb3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${ryb4.newsID}" class="juan">${ryb4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${ryb5.newsID}" class="juan">${ryb5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${ryb1.newsID}" class="juan">${ryb1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${ryb2.newsID}" class="juan">${ryb2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${ryb3.newsID}" class="juan">${ryb3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${ryb4.newsID}" class="juan">${ryb4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${ryb5.newsID}" class="juan">${ryb5.title}</a><br>
             <a href="<%=request.getContextPath()%>/more/honor" class="more">更多</a>
 
         </div>
@@ -168,11 +168,11 @@
 
         <div class="leftbox">
             <h2>外场纪实</h2>
-            <a href="<%=request.getContextPath()%>/news/${bcjs1.newsID}" class="juan">${bcjs1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bcjs2.newsID}" class="juan">${bcjs2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bcjs3.newsID}" class="juan">${bcjs3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bcjs4.newsID}" class="juan">${bcjs4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${bcjs5.newsID}" class="juan">${bcjs5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bcjs1.newsID}" class="juan">${bcjs1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bcjs2.newsID}" class="juan">${bcjs2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bcjs3.newsID}" class="juan">${bcjs3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bcjs4.newsID}" class="juan">${bcjs4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${bcjs5.newsID}" class="juan">${bcjs5.title}</a><br>
             <a href="<%=request.getContextPath()%>/more/report" class="more">更多</a>
         </div>
 
@@ -181,11 +181,11 @@
 
 
             <h2>产品简介</h2>
-            <a href="<%=request.getContextPath()%>/news/${qyzx1.newsID}" class="juan">${qyzx1.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${qyzx2.newsID}" class="juan">${qyzx2.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${qyzx3.newsID}" class="juan">${qyzx3.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${qyzx4.newsID}" class="juan">${qyzx4.title}</a><br>
-            <a href="<%=request.getContextPath()%>/news/${qyzx5.newsID}" class="juan">${qyzx5.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${qyzx1.newsID}" class="juan">${qyzx1.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${qyzx2.newsID}" class="juan">${qyzx2.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${qyzx3.newsID}" class="juan">${qyzx3.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${qyzx4.newsID}" class="juan">${qyzx4.title}</a><br>
+            <a href="<%=request.getContextPath()%>/news/id/${qyzx5.newsID}" class="juan">${qyzx5.title}</a><br>
             <a href="<%=request.getContextPath()%>/more/product" class="more">更多</a>
 
         </div>
@@ -198,12 +198,12 @@
 
     <div class="footer">
         <div class="copyrights">
-            @2017 第一事业部测发控系统室出品
+            @2017 第一事业部测发控系统室出品（建议使用Firefox或Chrome浏览器，你懂的）
         </div>
         <div class="footer_right">
             <a href="<%=request.getContextPath()%>/index">主页</a>
             <a href="<%=request.getContextPath()%>/about">关于我们</a>
-            <a href="#">一周安排</a>
+            <a href="<%=request.getContextPath()%>/meetings">一周安排</a>
             <a href="<%=request.getContextPath()%>/upload">管理员</a>
         </div>
         <div class="clear"></div>

@@ -1,23 +1,26 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: chenwenhao
+  Date: 2017/8/16
+  Time: 17:54
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 
-    <title>更多</title>
+    <title>关于我们</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/style.css"/>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#featured > ul").tabs({fx: {opacity: "toggle"}}).tabs("rotate", 5000, true);
-        });
-    </script>
+
 </head>
 
 
@@ -59,26 +62,13 @@
 
     <div class="center_content_pages">
 
+
         <div class="morenews">
-
-            <h2 id="MoreNewsTitle">${title}</h2>
-
-
-            <c:forEach items="${listname}" var="temp">
-                <div>
-                <a href="<%=request.getContextPath()%>/news/id/${temp.newsID}" >
-                    <span class="span-left">${temp.title}</span>
-                    <span class="span-right">${temp.releaseDate}</span>
-                </a>
-                <br>
-                </div>
-            </c:forEach>
-
-
+            <h2>第一事业部简介</h2>
         </div>
 
-        <div class="clear"></div>
 
+        <div class="clear"></div>
     </div>
 
 
@@ -90,13 +80,10 @@
             <a href="<%=request.getContextPath()%>/index">主页</a>
             <a href="<%=request.getContextPath()%>/about">关于我们</a>
             <a href="<%=request.getContextPath()%>/meetings">一周安排</a>
-            <a href="<%=request.getContextPath()%>/upload">管理员</a>
         </div>
         <div class="clear"></div>
     </div>
 
-</div> <!--end of main container-->
-
-
+</div>
 </body>
 </html>

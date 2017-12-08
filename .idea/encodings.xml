@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/com/DepartmentWebSite/controller/NewsUploadController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/DepartmentWebSite/controller/moreController.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/DepartmentWebSite/controller/uploadController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/DepartmentWebSite/service/impl/IGetAllMeetingsImpl.java" charset="GBK" />
   </component>
 </project>

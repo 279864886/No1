@@ -31,8 +31,8 @@ public class IGetAllMeetingsImpl implements IGetAllMeetings {
 
         this.imysql.connSQL();
 
-        String str="select * from meetings where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= date(start_date);";
-
+        String str="SELECT * FROM meetings WHERE DATE_SUB(CURDATE(),INTERVAL (SELECT WEEKDAY(CURDATE())) DAY) <= DATE(start_date);";
+        //String str="select * from meetings";
         ResultSet rs = this.imysql.selectSQL(str);
 
         int rowCount=0;
@@ -43,10 +43,10 @@ public class IGetAllMeetingsImpl implements IGetAllMeetings {
         }
         catch (Exception e) {
             // TODO: handle exception
-            e.printStackTrace();
+            return null;
         }
 
-        MeetingsDataEntity[] meetings=null;
+        MeetingsDataEntity[] meetings;
         String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
 
         if(rowCount>0) {
